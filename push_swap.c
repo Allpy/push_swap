@@ -13,22 +13,10 @@
 #include "./includes/push_swap.h"
 #include "./ft_printf/ft_printf.h"
 
-int	arg_checker(char **argv)
-{
-	while (*argv)
-	{
-		while (**argv != '\0' && **argv >= '0' && **argv <= '9')
-		{
-			if (**argv >= '0' && **argv <= '9')
-			{
-			
-			}
-		}
-	}
-	return (1);
-}
-
 int	main(int argc, char **argv)
 {
-	ft_printf("test");
+	int	check_arg;
+
+	check_arg = arg_checker(argv);
+	ft_printf("%d", check_arg);
 }
