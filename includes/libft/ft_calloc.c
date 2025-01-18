@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:46:39 by alermi            #+#    #+#             */
-/*   Updated: 2025/01/12 15:11:52 by alermi           ###   ########.fr       */
+/*   Created: 2024/10/29 17:12:01 by alermi            #+#    #+#             */
+/*   Updated: 2024/10/29 17:12:04 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "../ft_printf/ft_printf.h"
-# include "./libft/libft.h"
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	unsigned char	*tmp;
+	size_t			i;
 
-# ifndef STACK_A
-#  define STACK_A
-# endif
-
-int	arg_checker(char **argv);
-
-#endif
+	i = 0;
+	tmp = malloc(nmemb * size);
+	if (!tmp)
+		return (NULL);
+	while (i < nmemb * size)
+		tmp[i++] = 0;
+	return (tmp);
+}

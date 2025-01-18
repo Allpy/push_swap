@@ -18,5 +18,9 @@ int	main(int argc, char **argv)
 	int	check_arg;
 
 	check_arg = arg_checker(argv);
-	ft_printf("%d", check_arg);
+	if (check_arg == -1)
+	{
+		ft_printf("Invalid argument value! \n");
+		return (0);
+	}
 }

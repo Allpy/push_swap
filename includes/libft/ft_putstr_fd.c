@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putstr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:46:39 by alermi            #+#    #+#             */
-/*   Updated: 2025/01/12 15:11:52 by alermi           ###   ########.fr       */
+/*   Created: 2024/11/01 18:26:20 by alermi            #+#    #+#             */
+/*   Updated: 2024/11/01 18:26:21 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include <unistd.h>
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "../ft_printf/ft_printf.h"
-# include "./libft/libft.h"
-
-# ifndef STACK_A
-#  define STACK_A
-# endif
-
-int	arg_checker(char **argv);
-
-#endif
+void	ft_putstr_fd(char *s, int fd)
+{
+	write (fd, s, ft_strlen(s));
+}

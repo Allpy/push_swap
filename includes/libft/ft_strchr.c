@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42kocaeli.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:46:39 by alermi            #+#    #+#             */
-/*   Updated: 2025/01/12 15:11:52 by alermi           ###   ########.fr       */
+/*   Created: 2024/10/21 20:03:58 by alermi            #+#    #+#             */
+/*   Updated: 2024/10/21 20:21:59 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include <stddef.h>
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "../ft_printf/ft_printf.h"
-# include "./libft/libft.h"
-
-# ifndef STACK_A
-#  define STACK_A
-# endif
-
-int	arg_checker(char **argv);
-
-#endif
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char)c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (char )c)
+		return ((char *)s);
+	return (NULL);
+}

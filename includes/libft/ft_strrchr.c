@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:46:39 by alermi            #+#    #+#             */
-/*   Updated: 2025/01/12 15:11:52 by alermi           ###   ########.fr       */
+/*   Created: 2024/10/21 20:28:01 by alermi            #+#    #+#             */
+/*   Updated: 2024/10/21 20:28:12 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-# include "../ft_printf/ft_printf.h"
-# include "./libft/libft.h"
+char	*ft_strrchr(const char *s, int c)
+{
+	int	i;
 
-# ifndef STACK_A
-#  define STACK_A
-# endif
-
-int	arg_checker(char **argv);
-
-#endif
+	i = ft_strlen(s);
+	while (i >= 0)
+	{
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i--;
+	}
+	return (NULL);
+}

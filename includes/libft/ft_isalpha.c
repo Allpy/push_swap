@@ -1,27 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_isalpha.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42kocaeli.com>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 16:46:39 by alermi            #+#    #+#             */
-/*   Updated: 2025/01/12 15:11:52 by alermi           ###   ########.fr       */
+/*   Created: 2024/10/10 20:20:29 by alermi            #+#    #+#             */
+/*   Updated: 2024/10/15 09:30:03 by alermi           ###   ########.tr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-
-# include <stdlib.h>
-# include <unistd.h>
-# include "../ft_printf/ft_printf.h"
-# include "./libft/libft.h"
-
-# ifndef STACK_A
-#  define STACK_A
-# endif
-
-int	arg_checker(char **argv);
-
-#endif
+int	ft_isalpha(int c)
+{
+	return ((c >= 65 && c <= 90) || (c >= 97 && c <= 122));
+}

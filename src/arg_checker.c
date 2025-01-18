@@ -14,22 +14,30 @@
 
 int	sign_checker(char *argv)
 {
-	int	sign_flag;
 	int	i;
 
-	sign_flag = 0;
 	i = 0;
 	if (argv[i] == '+' || argv[i] == '-')
-	{
-		sign_flag = 1;
 		i++;
-	}
 	while (argv[i])
 	{
-		if (sign_flag == 0 && (argv[i] == '+' || argv[i] == '-'))
-			sign_flag = 1;
-		else if (sign_flag == 1 && (argv[i] == '+' || argv[i] == '-'))
-			return (-1);
+		if (argv[i] == '+' || argv[i] == '-')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
+int	value_checker(char *argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i])
+	{
+		if ((argv[i] < '0' || argv[i] > '9')
+			&& (argv[i] != '+' && argv[i] != '-'))
+			return (0);
 		i++;
 	}
 	return (1);
@@ -37,31 +45,15 @@ int	sign_checker(char *argv)
 
 int	arg_checker(char **argv)
 {
-	int	value_state;
 	int	i;
-	int	j;
+	int	controller;
 
-	value_state = 1;
 	i = 1;
-	j = 0;
 	while (argv[i])
 	{
-		value_state = sign_checker(argv[i]);
-		if (value_state == -1)
+		if (!sign_checker(argv[i]) || !value_checker(argv[i]))
 			return (-1);
-		while (argv[i][j])
-		{
-			if ((argv[i][j] <= '0' && argv[i][j] >= '9')
-				|| (argv[i][j] != '+' || argv[i][j] != '-'))
-				value_state = -1;
-			if (value_state == -1)
-				return (-1);
-			j++;
-		}
 		i++;
 	}
 	return (1);
 }
-
-
-// 12
