@@ -18,9 +18,10 @@
 # include "../ft_printf/ft_printf.h"
 # include "./libft/libft.h"
 
-# ifndef STACK_A
-#  define STACK_A
-# endif
+typedef struct s_stack_one {
+    int a;
+    struct s_stack_one  *node;
+} t_stack_one;
 
 int	arg_checker(char **argv);
 
