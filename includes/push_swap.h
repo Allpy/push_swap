@@ -15,13 +15,13 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-# include "../ft_printf/ft_printf.h"
+# include "ft_printf/ft_printf.h"
 # include "./libft/libft.h"
 
 typedef struct s_stack_one {
-    int a;
-    struct s_stack_one  *node;
-} t_stack_one;
+	int					a;
+	struct s_stack_one	*node;
+}	t_stack_one;
 
 int	arg_checker(char **argv);
 

@@ -11,14 +11,13 @@
 /* ************************************************************************** */
 
 #include "./includes/push_swap.h"
-#include "./ft_printf/ft_printf.h"
 
 int	main(int argc, char **argv)
 {
 	int	check_arg;
 
 	check_arg = arg_checker(argv);
-	if (check_arg == -1)
+	if (check_arg == -1 || argc < 3)
 	{
 		ft_printf("Invalid argument value! \n");
 		return (0);
