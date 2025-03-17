@@ -23,6 +23,10 @@ typedef struct s_stack_one {
 	struct s_stack_one	*node;
 }	t_stack_one;
 
-int	arg_checker(char **argv);
+
+//##############=[Checker Funtions]=#################//
+int		arg_checker(char **argv, int argc)
+void	multiple_arg_checker(char **str)
+void	single_arg_checker(char *numbers)
 
 #endif

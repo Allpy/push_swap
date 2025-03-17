@@ -3,8 +3,8 @@ CC = cc
 RM = rm -rf
 AR = ar rcs
 
-PUSH_SWAP_SRC = ./push_swap.c		\
-				./src/arg_checker.c \
+PUSH_SWAP_SRC = ./src/push_swap.c	\
+				./src/arg_checks.c	
 
 OBJ = $(PUSH_SWAP_SRC:.c=.o)
 
