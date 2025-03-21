@@ -1,47 +1,106 @@
 #include "../includes/push_swap.h"
+#include "../includes/libft/libft.h"
+#include <stdio.h>
 
 int	checker_atoi(char *str)
 {
-	int	i;
-	int	sign;
-	int	result;
+	int			i;
+	int			sign;
+	long int	result;
 
-	sign = 1;
-	result 0;
 	result = 0;
-	while (str[i] <= 32)
+	sign = 1;
+	i = 0;
+	if (str[i] == '+')
 		i++;
-	if (str[i] == '+' && str[i + 1] != '-' )
-		i++;
-	if (str[i] == '-' && str[i + 1] != '+')
+	else if (str[i] == '-')
 	{
 		sign = -1;
 		i++;
 	}
-	while (str[i] && str[i] >= '0' && str[i] <= '9')
+	while (str[i])
 	{
-		result = (result * 10) + (str[i] - '0')
+		if (str[i] < '0' || str[i] > '9')
+			return (-1);
+		result = (result * 10) + (str[i] - '0');
 		i++;
 	}
-	return (result * sign);
-
+	if (result * sign > 2147483647 || result * sign < -2147483648)
+		error_exit();
+	return ((int)(result * sign));
 }
 
-void	single_arg_checker(char *numbers)
+void add_to_stack(t_stack *stack, int value)
 {
+    t_node *new_node;
 
+    new_node = (t_node *)malloc(sizeof(t_node));
+    if (!new_node)
+        error_exit();
+    new_node->data = value;
+    new_node->next = NULL;
+    new_node->prev = stack->top;
+    if (stack->top)
+        stack->top->next = new_node;
+    else
+        stack->bottom = new_node;
+    stack->top = new_node;
+    stack->size++;
 }
 
-void	multiple_arg_checker(char **str)
+void single_arg_checker(char *numbers, t_stack *stack_a)
 {
+    int i;
+    int num;
+	char **arr;
 
+	i = 0;
+	arr = ft_split(numbers, ' ');
+	if (arr == NULL)
+		error_exit();
+	while (arr[i])
+	{
+		if (arr[i][0] == '-' && arr[i][1] == '1' && arr[i][3] == '\0')
+			num = -1;
+		else
+		{
+			num = checker_atoi(arr[i]);
+			if (num == -1)
+				error_exit();
+			add_to_stack(stack_a, num);
+		}
+		i++;
+	}
+	if (i == 1)
+		error_exit();
 }
 
-int	arg_checker(char **argv, int argc)
+void multiple_arg_checker(char **str, int argc, t_stack *stack_a)
 {
-	if(argc == 2)
-		single_arg_checker(argv[1]);
-	else if (argc > 2)
-		multiple_arg_checker(argv);
-	return (0);
+    int i = 1;
+    int num;
+
+    while (i < argc)
+    {
+		if (str[i][0] == '-' && str[i][1] == '1' && str[i][2] == '\0')
+			num = -1;
+		else
+		{
+        	num = checker_atoi(str[i]);
+			if (num == -1)
+				error_exit();
+		}
+        add_to_stack(stack_a, num);
+        i++;
+    }
+}
+
+void arg_checker(char **argv, int argc, t_stack *stack_a)
+{
+    if (argc == 2)
+        single_arg_checker(argv[1], stack_a);
+    else if (argc > 2)
+        multiple_arg_checker(argv, argc, stack_a);
+    else
+        error_exit();
 }
