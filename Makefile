@@ -1,10 +1,11 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g
 RM = rm -rf
 
-SRC = ./src/main.c \
-      ./src/arg_checks.c
+SRC = ./src/main.c					\
+      ./src/arg_checks.c			\
+	  ./src/list_manipulations.c	
 
 INC = ./includes/libft/libft.a
 

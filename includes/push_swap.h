@@ -51,11 +51,14 @@ void single_arg_checker(char *numbers, t_stack *stack_a);
 
 //###############=[Error and Close]=################//
 
+void free_stack(t_stack *stack);
 void error_exit(void);
 
-//###############=[Data Manipulation]=################//
+//###############=[Stack Manipulation]=################//
 
+void remove_node(t_stack *stack, t_node *node);
 void add_to_stack(t_stack *stack, int value);
+void print_stack(t_stack *stack);
 
 
 #endif

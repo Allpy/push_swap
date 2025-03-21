@@ -30,23 +30,6 @@ int	checker_atoi(char *str)
 	return ((int)(result * sign));
 }
 
-void add_to_stack(t_stack *stack, int value)
-{
-    t_node *new_node;
-
-    new_node = (t_node *)malloc(sizeof(t_node));
-    if (!new_node)
-        error_exit();
-    new_node->data = value;
-    new_node->next = NULL;
-    new_node->prev = stack->top;
-    if (stack->top)
-        stack->top->next = new_node;
-    else
-        stack->bottom = new_node;
-    stack->top = new_node;
-    stack->size++;
-}
 
 void single_arg_checker(char *numbers, t_stack *stack_a)
 {
