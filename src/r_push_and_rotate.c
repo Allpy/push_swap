@@ -10,3 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../includes/push_swap.h"
+
+void	rra(t_stack *stack_a)
+{
+
+}
+
+void	rrb(t_stack *stack_b) // optimizasyon için
+{
+
+}

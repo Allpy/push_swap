@@ -48,6 +48,7 @@ typedef struct s_sets
 void arg_checker(char **argv, int argc, t_stack *stack_a);
 void multiple_arg_checker(char **str, int argc, t_stack *stack_a);
 void single_arg_checker(char *numbers, t_stack *stack_a);
+void	check_unique(t_node *head);
 
 //###############=[Error and Close]=################//
 

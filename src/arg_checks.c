@@ -42,6 +42,25 @@ int	checker_atoi(char *str)
 	return ((int)(result * sign));
 }
 
+void	check_unique(t_node *head)
+{
+	t_node	*check_node;
+	t_node	*active_node;
+
+	active_node = head;
+	while (active_node != 0)
+	{
+		check_node = active_node->next;
+		while (check_node != 0)
+		{
+			if (active_node->data == check_node->data)
+				error_exit();
+			check_node = check_node->next;
+		}
+		active_node = active_node->next;
+	}
+}
+
 void	single_arg_checker(char *numbers, t_stack *stack_a)
 {
 	int		i;
@@ -67,6 +86,7 @@ void	single_arg_checker(char *numbers, t_stack *stack_a)
 	}
 	if (i == 1)
 		error_exit();
+	check_unique(stack_a->bottom);
 }
 
 void	multiple_arg_checker(char **str, int argc, t_stack *stack_a)
@@ -88,6 +108,7 @@ void	multiple_arg_checker(char **str, int argc, t_stack *stack_a)
 		add_to_stack(stack_a, num);
 		i++;
 	}
+	check_unique(stack_a->bottom);
 }
 
 void	arg_checker(char **argv, int argc, t_stack *stack_a)
