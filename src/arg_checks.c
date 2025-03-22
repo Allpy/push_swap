@@ -86,6 +86,7 @@ void	single_arg_checker(char *numbers, t_stack *stack_a)
 	}
 	if (i == 1)
 		error_exit();
+	matris_free(arr);
 	check_unique(stack_a->bottom);
 }
 

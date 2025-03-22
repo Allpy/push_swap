@@ -5,7 +5,8 @@ RM = rm -rf
 
 SRC = ./src/main.c					\
       ./src/arg_checks.c			\
-	  ./src/list_manipulations.c	
+	  ./src/list_manipulations.c	\
+	  ./src/push_and_rotate.c
 
 INC = ./includes/libft/libft.a
 

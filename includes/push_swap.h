@@ -20,9 +20,10 @@
 
 typedef struct s_node
 {
-	int	data;
-	struct	s_node *next;
-	struct	s_node *prev;
+	int				data;
+	int				index;
+	struct	s_node	*next;
+	struct	s_node	*prev;
 } t_node;
 
 
@@ -45,21 +46,26 @@ typedef struct s_sets
 
 //##############=[Checker Funtions]=#################//
 
-void arg_checker(char **argv, int argc, t_stack *stack_a);
-void multiple_arg_checker(char **str, int argc, t_stack *stack_a);
-void single_arg_checker(char *numbers, t_stack *stack_a);
+void	arg_checker(char **argv, int argc, t_stack *stack_a);
+void	multiple_arg_checker(char **str, int argc, t_stack *stack_a);
+void	single_arg_checker(char *numbers, t_stack *stack_a);
 void	check_unique(t_node *head);
 
 //###############=[Error and Close]=################//
 
-void free_stack(t_stack *stack);
-void error_exit(void);
+void	free_stack(t_stack *stack);
+void	free_imp(char *str);
+void	matris_free(char **str);
+void	error_exit(void);
 
 //###############=[Stack Manipulation]=################//
 
-void remove_node(t_stack *stack, t_node *node);
-void add_to_stack(t_stack *stack, int value);
-void print_stack(t_stack *stack);
+void	remove_node(t_stack *stack, t_node *node);
+void	add_to_stack(t_stack *stack, int value);
+void	print_stack(t_stack *stack);
 
+//###############=[Action Pattern]=################//
+void	pa(t_stack *stack_a, t_stack *stack_b);
+void	ra(t_stack *stack_a);
 
 #endif

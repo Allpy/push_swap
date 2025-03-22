@@ -22,12 +22,12 @@ void	add_to_stack(t_stack *stack, int value)
 		error_exit();
 	new_node->data = value;
 	new_node->next = NULL;
-	new_node->prev = stack->top;
-	if (stack->top)
-		stack->top->next = new_node;
+	new_node->prev = stack->bottom;
+	if (stack->bottom)
+		stack->bottom->next = new_node;
 	else
-		stack->bottom = new_node;
-	stack->top = new_node;
+		stack->top = new_node;
+	stack->bottom = new_node;
 	stack->size++;
 }
 
@@ -38,11 +38,11 @@ void	remove_node(t_stack *stack, t_node *node)
 	if (node->prev)
 		node->prev->next = node->next;
 	else
-		stack->bottom = node->next;
+		stack->top = node->next;
 	if (node->next)
 		node->next->prev = node->prev;
 	else
-		stack->top = node->prev;
+		stack->bottom = node->prev;
 	free(node);
 	stack->size--;
 }
@@ -52,15 +52,15 @@ void	free_stack(t_stack *stack)
 	t_node	*current;
 	t_node	*next_node;
 
-	current = stack->bottom;
+	current = stack->top;
 	while (current)
 	{
 		next_node = current->next;
 		free(current);
 		current = next_node;
 	}
-	stack->top = NULL;
 	stack->bottom = NULL;
+	stack->top = NULL;
 	stack->size = 0;
 }
 
@@ -68,7 +68,7 @@ void	print_stack(t_stack *stack)
 {
 	t_node	*current;
 
-	current = stack->bottom;
+	current = stack->top;
 	while (current)
 	{
 		printf("%d\n", current->data);

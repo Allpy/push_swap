@@ -14,10 +14,10 @@
 
 void	rra(t_stack *stack_a)
 {
-
+	write(1, "rra\n", 4);
 }
 
 void	rrb(t_stack *stack_b) // optimizasyon için
 {
-
+	write(1, "rrb\n", 4);
 }
