@@ -17,14 +17,13 @@ void	pa(t_stack *stack_a, t_stack *stack_b)
 {
 	add_to_stack(stack_b, stack_a->top->data);
 	remove_node(stack_a, stack_a->top);
-	print_stack(stack_b);
 	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack *stack_b, t_stack *stack_a)
 {
-	add_to_stack(stack_b, stack_a->bottom->data);
-	remove_node(stack_a, stack_a->bottom);
+	add_to_stack(stack_b, stack_a->top->data);
+	remove_node(stack_a, stack_a->top);
 	write(1, "pb\n", 3);
 }
 
@@ -40,7 +39,14 @@ void	ra(t_stack *stack_a)
 	write(1, "ra\n", 3);
 }
 
-void	rb(t_stack *stack_a) // kullanılmadı -> kullanılabilir
+void	rb(t_stack *stack_b) // kullanılmadı -> kullanılabilir
 {
+    t_node	*tmp;
+	
+	stack_b->bottom->next = stack_b->top;
+	stack_b->top->prev = stack_b->bottom;
+	stack_b->top = stack_b->top->next;
+	stack_b->top->prev->next = NULL;
+	stack_b->top->prev = NULL;
 	write(1, "rb\n", 3);
 }

@@ -66,6 +66,8 @@ void	print_stack(t_stack *stack);
 
 //###############=[Action Pattern]=################//
 void	pa(t_stack *stack_a, t_stack *stack_b);
+void	pb(t_stack *stack_b, t_stack *stack_a);
 void	ra(t_stack *stack_a);
+void	rb(t_stack *stack_b); // kullanılmadı -> kullanılabilir
 
 #endif

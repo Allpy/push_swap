@@ -49,12 +49,23 @@ int	main(int argc, char **argv)
 	t_sets	sets;
 	t_node	*start;
 
+    printf("////////////////////////////////////////////////////////////////////////////\n");
 	ft_memset(&sets, 0, sizeof(t_sets));
 	arg_checker(argv, argc, &sets.stack_a);
-	print_stack(&sets.stack_a); 
-	ra(&sets.stack_a);
-	print_stack(&sets.stack_a); 
+    printf("////////////////stacka :\n");
+	print_stack(&sets.stack_a);
+    printf("////////////////stackb :\n");
+	print_stack(&sets.stack_b);
+	pb(&sets.stack_b, &sets.stack_a);
+	pb(&sets.stack_b, &sets.stack_a);
+	pb(&sets.stack_b, &sets.stack_a);
+    rb(&sets.stack_b);
+    printf("////////////////stacka :\n");
+	print_stack(&sets.stack_a);
+    printf("////////////////stackb :\n");
+	print_stack(&sets.stack_b); 
 	free_stack(&sets.stack_a);
 	free_stack(&sets.stack_b);
+    printf("////////////////////////////////////////////////////////////////////////////\n");
 	return (0);
 }
