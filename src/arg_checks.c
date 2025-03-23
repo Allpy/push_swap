@@ -38,7 +38,7 @@ int	checker_atoi(char *str, t_sets *sets)
 		i++;
 	}
 	if (result * sign > 2147483647 || result * sign < -2147483648)
-		error_exit(&sets->stack_a, &sets->stack_b);
+		error_exit(&sets->stack_a, &sets->stack_b, 1);
 	return ((int)(result * sign));
 }
 
@@ -54,7 +54,7 @@ void	check_unique(t_sets *sets)
 		while (check_node != 0)
 		{
 			if (active_node->data == check_node->data)
-				error_exit(&sets->stack_a, &sets->stack_b);
+				error_exit(&sets->stack_a, &sets->stack_b, 1);
 			check_node = check_node->next;
 		}
 		active_node = active_node->next;
@@ -70,7 +70,7 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 	i = 0;
 	arr = ft_split(numbers, ' ');
 	if (arr == NULL)
-		error_exit(&sets->stack_a, &sets->stack_b);
+		error_exit(&sets->stack_a, &sets->stack_b, 1);
 	while (arr[i])
 	{
 		if (arr[i][0] == '-' && arr[i][1] == '1' && arr[i][3] == '\0')
@@ -79,13 +79,19 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 		{
 			num = checker_atoi(arr[i], sets);
 			if (num == -1)
-				error_exit(&sets->stack_a, &sets->stack_b);
+			{
+				matris_free(arr);
+				error_exit(&sets->stack_a, &sets->stack_b, 1);
+			}
 			add_to_stack(&sets->stack_a, num);
 		}
 		i++;
 	}
 	if (i == 1)
-		error_exit(&sets->stack_a, &sets->stack_b);
+	{
+		matris_free(arr);
+		error_exit(&sets->stack_a, &sets->stack_b, 1);
+	}
 	matris_free(arr);
 	check_unique(sets);
 }
@@ -104,7 +110,7 @@ void	multiple_arg_checker(char **str, int argc, t_sets *sets)
 		{
 			num = checker_atoi(str[i], &sets);
 			if (num == -1)
-				error_exit(&sets->stack_a, &sets->stack_b);
+				error_exit(&sets->stack_a, &sets->stack_b, 1);
 		}
 		add_to_stack(&sets->stack_a, num);
 		i++;
@@ -119,7 +125,7 @@ void	arg_checker(char **argv, int argc, t_sets *sets)
 	else if (argc > 2)
 		multiple_arg_checker(argv, argc, &sets->stack_a);
 	else
-		error_exit(&sets->stack_a, &sets->stack_b);
+		error_exit(&sets->stack_a, &sets->stack_b, 1);
 }
 
 

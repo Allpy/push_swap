@@ -43,12 +43,14 @@ void	free_stack(t_stack *stack)
 	stack->size = 0;
 }
 
-void	error_exit(t_stack *stack_a, t_stack *stack_b)
+void	error_exit(t_stack *stack_a, t_stack *stack_b, int section)
 {
-	printf("Error\n");
     if ((stack_a) && stack_a->top)
         free_stack(stack_a);
     if ((stack_b) && stack_b->top)
         free_stack(stack_b);
+	if (section == 0)
+		exit (0);
+	write(1, "Error\n", 1);
 	exit(1);
 }

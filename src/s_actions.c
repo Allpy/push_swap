@@ -51,5 +51,5 @@ void    swap_selector(t_sets *sets, char *pick)
 		write(1, "ss\n", 3);
 	}
 	else
-		error_exit(NULL, NULL);(&sets);
+		error_exit(&sets->stack_b, &sets->stack_b, 1);
 }

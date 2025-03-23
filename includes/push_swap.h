@@ -56,7 +56,7 @@ void	check_unique(t_sets *sets);
 void	free_stack(t_stack *stack);
 void	free_imp(char *str);
 void	matris_free(char **str);
-void	error_exit(t_stack *stack_a, t_stack *stack_b);
+void	error_exit(t_stack *stack_a, t_stack *stack_b, int section);
 
 //###############=[Stack Manipulation]=################//
 
@@ -73,5 +73,10 @@ void	ra(t_stack *stack_a);
 void	rb(t_stack *stack_b);
 void	rra(t_stack *stack_a);
 void	rrb(t_stack *stack_b);
+
+//###############=[Sorting Pattern]=################//
+
+int 	is_sorted(t_stack *stack);
+
 
 #endif

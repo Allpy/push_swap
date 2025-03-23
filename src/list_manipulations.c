@@ -19,7 +19,7 @@ void	add_to_stack(t_stack *stack, int value)
 
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
-		error_exit(NULL, NULL);(NULL);
+		error_exit(NULL, NULL, 1);
 	new_node->data = value;
 	new_node->next = NULL;
 	new_node->prev = stack->bottom;
