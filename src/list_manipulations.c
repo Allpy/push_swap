@@ -19,7 +19,7 @@ void	add_to_stack(t_stack *stack, int value)
 
 	new_node = (t_node *)malloc(sizeof(t_node));
 	if (!new_node)
-		error_exit();
+		error_exit(NULL, NULL);(NULL);
 	new_node->data = value;
 	new_node->next = NULL;
 	new_node->prev = stack->bottom;
@@ -47,22 +47,7 @@ void	remove_node(t_stack *stack, t_node *node)
 	stack->size--;
 }
 
-void	free_stack(t_stack *stack)
-{
-	t_node	*current;
-	t_node	*next_node;
 
-	current = stack->top;
-	while (current)
-	{
-		next_node = current->next;
-		free(current);
-		current = next_node;
-	}
-	stack->bottom = NULL;
-	stack->top = NULL;
-	stack->size = 0;
-}
 
 void	print_stack(t_stack *stack_a, t_stack	*stack_b)
 {
@@ -71,17 +56,19 @@ void	print_stack(t_stack *stack_a, t_stack	*stack_b)
 
 	current_one = stack_a->top;
 	current_two	= stack_b->top;
+	printf("\n######################\n");
 	printf("\n|a|\n");
 	while (current_one)
 	{
 		printf("|%d|\n", current_one->data);
 		current_one = current_one->next;
 	}
-	printf("\n||||||||||||||||||||||||||||||||\n");
+	printf("\n######################\n");
 	printf("\n|b|\n");
 	while (current_two)
 	{
 		printf("|%d|\n", current_two->data);
 		current_two = current_two->next;
 	}
+	printf("\n######################\n");
 }

@@ -14,7 +14,7 @@
 #include "../includes/libft/libft.h"
 #include <stdio.h>
 
-int	checker_atoi(char *str)
+int	checker_atoi(char *str, t_sets *sets)
 {
 	int			i;
 	int			sign;
@@ -38,30 +38,30 @@ int	checker_atoi(char *str)
 		i++;
 	}
 	if (result * sign > 2147483647 || result * sign < -2147483648)
-		error_exit();
+		error_exit(&sets->stack_a, &sets->stack_b);
 	return ((int)(result * sign));
 }
 
-void	check_unique(t_node *head)
+void	check_unique(t_sets *sets)
 {
 	t_node	*check_node;
 	t_node	*active_node;
 
-	active_node = head;
+	active_node = sets->stack_a.top;
 	while (active_node != 0)
 	{
 		check_node = active_node->next;
 		while (check_node != 0)
 		{
 			if (active_node->data == check_node->data)
-				error_exit();
+				error_exit(&sets->stack_a, &sets->stack_b);
 			check_node = check_node->next;
 		}
 		active_node = active_node->next;
 	}
 }
 
-void	single_arg_checker(char *numbers, t_stack *stack_a)
+void	single_arg_checker(char *numbers, t_sets *sets)
 {
 	int		i;
 	int		num;
@@ -70,27 +70,27 @@ void	single_arg_checker(char *numbers, t_stack *stack_a)
 	i = 0;
 	arr = ft_split(numbers, ' ');
 	if (arr == NULL)
-		error_exit();
+		error_exit(&sets->stack_a, &sets->stack_b);
 	while (arr[i])
 	{
 		if (arr[i][0] == '-' && arr[i][1] == '1' && arr[i][3] == '\0')
 			num = -1;
 		else
 		{
-			num = checker_atoi(arr[i]);
+			num = checker_atoi(arr[i], sets);
 			if (num == -1)
-				error_exit();
-			add_to_stack(stack_a, num);
+				error_exit(&sets->stack_a, &sets->stack_b);
+			add_to_stack(&sets->stack_a, num);
 		}
 		i++;
 	}
 	if (i == 1)
-		error_exit();
+		error_exit(&sets->stack_a, &sets->stack_b);
 	matris_free(arr);
-	check_unique(stack_a->bottom);
+	check_unique(sets);
 }
 
-void	multiple_arg_checker(char **str, int argc, t_stack *stack_a)
+void	multiple_arg_checker(char **str, int argc, t_sets *sets)
 {
 	int	i;
 	int	num;
@@ -102,22 +102,25 @@ void	multiple_arg_checker(char **str, int argc, t_stack *stack_a)
 			num = -1;
 		else
 		{
-			num = checker_atoi(str[i]);
+			num = checker_atoi(str[i], &sets);
 			if (num == -1)
-				error_exit();
+				error_exit(&sets->stack_a, &sets->stack_b);
 		}
-		add_to_stack(stack_a, num);
+		add_to_stack(&sets->stack_a, num);
 		i++;
 	}
-	check_unique(stack_a->bottom);
+	check_unique(&sets->stack_a);
 }
 
-void	arg_checker(char **argv, int argc, t_stack *stack_a)
+void	arg_checker(char **argv, int argc, t_sets *sets)
 {
 	if (argc == 2)
-		single_arg_checker(argv[1], stack_a);
+		single_arg_checker(argv[1], &sets->stack_a);
 	else if (argc > 2)
-		multiple_arg_checker(argv, argc, stack_a);
+		multiple_arg_checker(argv, argc, &sets->stack_a);
 	else
-		error_exit();
+		error_exit(&sets->stack_a, &sets->stack_b);
 }
+
+
+

@@ -8,7 +8,8 @@ SRC = ./src/main.c					\
 	  ./src/list_manipulations.c	\
 	  ./src/push_and_rotate.c		\
 	  ./src/s_actions.c				\
-	  ./src/r_push_and_rotate.c		
+	  ./src/r_push_and_rotate.c		\
+	  ./src/close_project.c
 
 INC = ./includes/libft/libft.a
 

@@ -32,24 +32,24 @@ void	swap(t_stack *stack)
         stack->bottom = one;
 }
 
-void    swap_selector(t_stack *stack_a, t_stack *stack_b, char *pick)
+void    swap_selector(t_sets *sets, char *pick)
 {
 	if (pick[0] == 's' && pick[1] == 'a')
 	{
-		swap(stack_a);
+		swap(&sets->stack_a);
 		write(1, "sa\n", 3);
 	}
 	else if (pick[0] == 's' && pick[1] == 'b')
 	{
-		swap(stack_b);
+		swap(&sets->stack_b);
 		write(1, "sb\n", 3);
 	}
 	else if (pick[0] == 's' && pick[1] == 's')
 	{
-		swap(stack_a);
-		swap(stack_b);
+		swap(&sets->stack_a);
+		swap(&sets->stack_b);
 		write(1, "ss\n", 3);
 	}
 	else
-		error_exit();
+		error_exit(NULL, NULL);(&sets);
 }
