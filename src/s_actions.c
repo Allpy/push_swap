@@ -12,17 +12,44 @@
 
 #include "../includes/push_swap.h"
 
-void    sa(t_stack *stack_a) //
+void	swap(t_stack *stack)
 {
-	write(1, "sa\n", 3);
+    t_node *one;
+    t_node *two;
+
+    one = stack->top;
+    two = one->next;
+    if (!one || !two)
+        return;
+    one->next = two->next;
+    if (two->next)
+        two->next->prev = one;
+    two->prev = NULL;
+    two->next = one;
+    one->prev = two;
+    stack->top = two;
+    if (stack->size == 2)
+        stack->bottom = one;
 }
 
-void    sb(t_stack *stack_b)// optimizsyon için
+void    swap_selector(t_stack *stack_a, t_stack *stack_b, char *pick)
 {
-	write(1, "sb\n", 3);
-}
-
-void    ss(t_stack *stack_a, t_stack *stack_b)// optimizsyon için
-{
-	write(1, "ss\n", 3);
+	if (pick[0] == 's' && pick[1] == 'a')
+	{
+		swap(stack_a);
+		write(1, "sa\n", 3);
+	}
+	else if (pick[0] == 's' && pick[1] == 'b')
+	{
+		swap(stack_b);
+		write(1, "sb\n", 3);
+	}
+	else if (pick[0] == 's' && pick[1] == 's')
+	{
+		swap(stack_a);
+		swap(stack_b);
+		write(1, "ss\n", 3);
+	}
+	else
+		error_exit();
 }

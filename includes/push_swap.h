@@ -62,12 +62,16 @@ void	error_exit(void);
 
 void	remove_node(t_stack *stack, t_node *node);
 void	add_to_stack(t_stack *stack, int value);
-void	print_stack(t_stack *stack);
+void	print_stack(t_stack *stack_a, t_stack	*stack_b);
 
 //###############=[Action Pattern]=################//
+void    swap_selector(t_stack *stack_a, t_stack *stack_b, char *pick);
+void	swap(t_stack *stack);
 void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_b, t_stack *stack_a);
 void	ra(t_stack *stack_a);
-void	rb(t_stack *stack_b); // kullanılmadı -> kullanılabilir
+void	rb(t_stack *stack_b);
+void	rra(t_stack *stack_a);
+void	rrb(t_stack *stack_b);
 
 #endif

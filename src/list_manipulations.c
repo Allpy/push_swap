@@ -64,14 +64,24 @@ void	free_stack(t_stack *stack)
 	stack->size = 0;
 }
 
-void	print_stack(t_stack *stack)
+void	print_stack(t_stack *stack_a, t_stack	*stack_b)
 {
-	t_node	*current;
+	t_node	*current_one;
+	t_node	*current_two;
 
-	current = stack->top;
-	while (current)
+	current_one = stack_a->top;
+	current_two	= stack_b->top;
+	printf("\n|a|\n");
+	while (current_one)
 	{
-		printf("%d\n", current->data);
-		current = current->next;
+		printf("|%d|\n", current_one->data);
+		current_one = current_one->next;
+	}
+	printf("\n||||||||||||||||||||||||||||||||\n");
+	printf("\n|b|\n");
+	while (current_two)
+	{
+		printf("|%d|\n", current_two->data);
+		current_two = current_two->next;
 	}
 }
