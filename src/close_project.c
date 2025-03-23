@@ -51,6 +51,6 @@ void	error_exit(t_stack *stack_a, t_stack *stack_b, int section)
         free_stack(stack_b);
 	if (section == 0)
 		exit (0);
-	write(1, "Error\n", 1);
+	write(1, "Error\n", 6);
 	exit(1);
 }

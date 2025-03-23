@@ -60,6 +60,7 @@ void	error_exit(t_stack *stack_a, t_stack *stack_b, int section);
 
 //###############=[Stack Manipulation]=################//
 
+void    index_reset(t_sets *sets);
 void	remove_node(t_stack *stack, t_node *node);
 void	add_to_stack(t_stack *stack, int value);
 void	print_stack(t_stack *stack_a, t_stack	*stack_b);
@@ -77,6 +78,8 @@ void	rrb(t_stack *stack_b);
 //###############=[Sorting Pattern]=################//
 
 int 	is_sorted(t_stack *stack);
-
+//void	selection_sort(t_sets *sets);
+void	radix_sorting(t_sets *sets);
+void	assign_indexes(t_sets *sets);
 
 #endif

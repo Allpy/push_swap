@@ -21,9 +21,12 @@ int	main(int argc, char **argv)
     printf("////////////////////////////////////////////////////////////////////////////\n");
 	ft_memset(&sets, 0, sizeof(t_sets));
 	arg_checker(argv, argc, &sets);
-	printf("%d", (is_sorted(&sets.stack_a)));
 	if (is_sorted(&sets.stack_a))
 		error_exit(&sets.stack_a, &sets.stack_b, 0);
+	index_reset(&sets);
+	assign_indexes(&sets);
+	//if (sets.stack_a.size < 30)
+	//	selection_sort(&sets);
 	print_stack(&sets.stack_a, &sets.stack_b);
 	free_stack(&sets.stack_a);
 	free_stack(&sets.stack_b);

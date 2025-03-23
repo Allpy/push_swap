@@ -18,7 +18,7 @@ int	checker_atoi(char *str, t_sets *sets)
 {
 	int			i;
 	int			sign;
-	long int	result;
+	unsigned long int	result;
 
 	result = 0;
 	sign = 1;
@@ -38,7 +38,7 @@ int	checker_atoi(char *str, t_sets *sets)
 		i++;
 	}
 	if (result * sign > 2147483647 || result * sign < -2147483648)
-		error_exit(&sets->stack_a, &sets->stack_b, 1);
+		return (-1);
 	return ((int)(result * sign));
 }
 
