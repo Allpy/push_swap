@@ -11,7 +11,8 @@ SRC = ./src/main.c					\
 	  ./src/r_push_and_rotate.c		\
 	  ./src/close_project.c			\
 	  ./src/sorting.c				\
-	  ./src/selection_sort.c
+	  ./src/selection_sort.c		\
+	  ./src/radix_sort.c
 
 INC = ./includes/libft/libft.a
 

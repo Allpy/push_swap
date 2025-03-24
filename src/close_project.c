@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   close_project.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/03/24 03:31:17 by alermi            #+#    #+#             */
+/*   Updated: 2025/03/24 03:31:39 by alermi           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/push_swap.h"
 #include <stdlib.h>
 #include <stdio.h>
@@ -45,10 +57,10 @@ void	free_stack(t_stack *stack)
 
 void	error_exit(t_stack *stack_a, t_stack *stack_b, int section)
 {
-    if ((stack_a) && stack_a->top)
-        free_stack(stack_a);
-    if ((stack_b) && stack_b->top)
-        free_stack(stack_b);
+	if ((stack_a) && stack_a->top)
+		free_stack(stack_a);
+	if ((stack_b) && stack_b->top)
+		free_stack(stack_b);
 	if (section == 0)
 		exit (0);
 	write(1, "Error\n", 6);

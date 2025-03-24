@@ -18,19 +18,21 @@ int	main(int argc, char **argv)
 	t_sets	sets;
 	t_node	*start;
 
-    printf("////////////////////////////////////////////////////////////////////////////\n");
+    //printf("////////////////////////////////////////////////////////////////////////////\n");
 	ft_memset(&sets, 0, sizeof(t_sets));
 	arg_checker(argv, argc, &sets);
 	if (is_sorted(&sets.stack_a))
 		error_exit(&sets.stack_a, &sets.stack_b, 0);
 	index_reset(&sets);
 	assign_indexes(&sets);
-	print_stack(&sets.stack_a, &sets.stack_b);
-	if (sets.stack_a.size < 30)
+	//print_stack(&sets.stack_a, &sets.stack_b);
+	if (sets.stack_a.size < 10)
 		selection_sort(&sets);
-	print_stack(&sets.stack_a, &sets.stack_b);
+	else
+		radix_sort(&sets);
+	//print_stack(&sets.stack_a, &sets.stack_b);
 	free_stack(&sets.stack_a);
 	free_stack(&sets.stack_b);
-    printf("////////////////////////////////////////////////////////////////////////////\n");
+    //printf("////////////////////////////////////////////////////////////////////////////\n");
 	return (0);
 }

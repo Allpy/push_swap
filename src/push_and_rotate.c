@@ -6,7 +6,7 @@
 /*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:49:02 by alermi            #+#    #+#             */
-/*   Updated: 2025/03/22 12:49:04 by alermi           ###   ########.fr       */
+/*   Updated: 2025/03/24 03:35:59 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,48 +15,48 @@
 
 void	pa(t_stack *stack_a, t_stack *stack_b)
 {
-    if (!stack_b->top)
-        return;
-    t_node *tmp = stack_b->top;
-    stack_b->top = tmp->next;
-    if (stack_b->top)
-        stack_b->top->prev = NULL;
-    else
-        stack_b->bottom = NULL;
-    tmp->next = stack_a->top;
-    if (stack_a->top)
-        stack_a->top->prev = tmp;
-    stack_a->top = tmp;
-    if (!stack_a->bottom)
-        stack_a->bottom = tmp;
-    stack_a->size++;
-    stack_b->size--;
-    write(1, "pa\n", 3);
-}
+	t_node	*tmp;
 
+	if (!stack_b->top)
+		return ;
+	tmp = stack_b->top;
+	stack_b->top = tmp->next;
+	if (stack_b->top)
+		stack_b->top->prev = NULL;
+	else
+		stack_b->bottom = NULL;
+	tmp->next = stack_a->top;
+	if (stack_a->top)
+		stack_a->top->prev = tmp;
+	stack_a->top = tmp;
+	if (!stack_a->bottom)
+		stack_a->bottom = tmp;
+	stack_a->size++;
+	stack_b->size--;
+	write(1, "pa\n", 3);
+}
 
 void	pb(t_stack *stack_b, t_stack *stack_a)
 {
-    if (!stack_a->top)
-        return;
-    
-    t_node *tmp = stack_a->top;
-    stack_a->top = tmp->next;
-    if (stack_a->top)
-        stack_a->top->prev = NULL;
-    else
-        stack_a->bottom = NULL;
-    tmp->next = stack_b->top;
-    if (stack_b->top)
-        stack_b->top->prev = tmp;
-    stack_b->top = tmp;
-    if (!stack_b->bottom)
-        stack_b->bottom = tmp;
+	t_node	*tmp;
 
-    stack_b->size++;
-    stack_a->size--;
-
-    write(1, "pb\n", 3);
+	if (!stack_a->top)
+		return ;
+	tmp = stack_a->top;
+	stack_a->top = tmp->next;
+	if (stack_a->top)
+		stack_a->top->prev = NULL;
+	else
+		stack_a->bottom = NULL;
+	tmp->next = stack_b->top;
+	if (stack_b->top)
+		stack_b->top->prev = tmp;
+	stack_b->top = tmp;
+	if (!stack_b->bottom)
+		stack_b->bottom = tmp;
+	stack_b->size++;
+	stack_a->size--;
+	write(1, "pb\n", 3);
 }
 
 

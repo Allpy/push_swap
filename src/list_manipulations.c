@@ -6,7 +6,7 @@
 /*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:44:49 by alermi            #+#    #+#             */
-/*   Updated: 2025/03/22 12:45:05 by alermi           ###   ########.fr       */
+/*   Updated: 2025/03/24 03:32:27 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,16 +47,16 @@ void	remove_node(t_stack *stack, t_node *node)
 	stack->size--;
 }
 
-void    index_reset(t_sets *sets)
+void	index_reset(t_sets *sets)
 {
-    t_node  *head;
+	t_node	*head;
 
-    head = sets->stack_a.top;
-    while (head)
-    {
-        head->index = 0;
-        head = head->next;
-    }
+	head = sets->stack_a.top;
+	while (head)
+	{
+		head->index = 0;
+		head = head->next;
+	}
 }
 
 void	print_stack(t_stack *stack_a, t_stack	*stack_b)
@@ -65,7 +65,7 @@ void	print_stack(t_stack *stack_a, t_stack	*stack_b)
 	t_node	*current_two;
 
 	current_one = stack_a->top;
-	current_two	= stack_b->top;
+	current_two = stack_b->top;
 	printf("\n######################\n");
 	printf("\n|a|\n");
 	while (current_one)

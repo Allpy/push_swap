@@ -86,4 +86,8 @@ void	assign_indexes(t_sets *sets);
 void selection_sort(t_sets *sets);
 void move_to_b(t_sets *sets, int i);
 
+//###############=[Radix Sort]=################//
+
+void radix_sort(t_sets *sets);
+
 #endif
