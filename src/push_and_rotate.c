@@ -15,38 +15,80 @@
 
 void	pa(t_stack *stack_a, t_stack *stack_b)
 {
-	add_to_stack(stack_b, stack_a->top->data);
-	remove_node(stack_a, stack_a->top);
-	write(1, "pa\n", 3);
+    if (!stack_b->top)
+        return;
+    t_node *tmp = stack_b->top;
+    stack_b->top = tmp->next;
+    if (stack_b->top)
+        stack_b->top->prev = NULL;
+    else
+        stack_b->bottom = NULL;
+    tmp->next = stack_a->top;
+    if (stack_a->top)
+        stack_a->top->prev = tmp;
+    stack_a->top = tmp;
+    if (!stack_a->bottom)
+        stack_a->bottom = tmp;
+    stack_a->size++;
+    stack_b->size--;
+    write(1, "pa\n", 3);
 }
+
 
 void	pb(t_stack *stack_b, t_stack *stack_a)
 {
-	add_to_stack(stack_b, stack_a->top->data);
-	remove_node(stack_a, stack_a->top);
-	write(1, "pb\n", 3);
+    if (!stack_a->top)
+        return;
+    
+    t_node *tmp = stack_a->top;
+    stack_a->top = tmp->next;
+    if (stack_a->top)
+        stack_a->top->prev = NULL;
+    else
+        stack_a->bottom = NULL;
+    tmp->next = stack_b->top;
+    if (stack_b->top)
+        stack_b->top->prev = tmp;
+    stack_b->top = tmp;
+    if (!stack_b->bottom)
+        stack_b->bottom = tmp;
+
+    stack_b->size++;
+    stack_a->size--;
+
+    write(1, "pb\n", 3);
 }
 
-void	ra(t_stack *stack_a)
+
+
+void ra(t_stack *stack_a)
 {
-	t_node	*tmp;
-	
-	stack_a->bottom->next = stack_a->top;
-	stack_a->top->prev = stack_a->bottom;
-	stack_a->top = stack_a->top->next;
-	stack_a->top->prev->next = NULL;
-	stack_a->top->prev = NULL;
-	write(1, "ra\n", 3);
+    if (stack_a->size < 2)
+        return ;
+    t_node *tmp = stack_a->top;
+    stack_a->top = tmp->next;
+    stack_a->top->prev = NULL;
+    tmp->next = NULL;
+    tmp->prev = stack_a->bottom;
+    stack_a->bottom->next = tmp;
+    stack_a->bottom = tmp;
+
+    write(1, "ra\n", 3);
 }
 
-void	rb(t_stack *stack_b) // kullanılmadı -> kullanılabilir
+
+void rb(t_stack *stack_b)
 {
-    t_node	*tmp;
-	
-	stack_b->bottom->next = stack_b->top;
-	stack_b->top->prev = stack_b->bottom;
-	stack_b->top = stack_b->top->next;
-	stack_b->top->prev->next = NULL;
-	stack_b->top->prev = NULL;
-	write(1, "rb\n", 3);
+    if (stack_b->size < 2)
+        return;
+
+    t_node *tmp = stack_b->top;
+    stack_b->top = tmp->next;
+    stack_b->top->prev = NULL;
+    tmp->next = NULL;
+    tmp->prev = stack_b->bottom;
+    stack_b->bottom->next = tmp;
+    stack_b->bottom = tmp;
+    write(1, "rb\n", 3);
 }
+

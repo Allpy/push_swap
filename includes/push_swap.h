@@ -78,8 +78,12 @@ void	rrb(t_stack *stack_b);
 //###############=[Sorting Pattern]=################//
 
 int 	is_sorted(t_stack *stack);
-//void	selection_sort(t_sets *sets);
 void	radix_sorting(t_sets *sets);
 void	assign_indexes(t_sets *sets);
+
+//###############=[Sorting Pattern]=################//
+
+void selection_sort(t_sets *sets);
+void move_to_b(t_sets *sets, int i);
 
 #endif

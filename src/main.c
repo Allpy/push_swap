@@ -25,8 +25,9 @@ int	main(int argc, char **argv)
 		error_exit(&sets.stack_a, &sets.stack_b, 0);
 	index_reset(&sets);
 	assign_indexes(&sets);
-	//if (sets.stack_a.size < 30)
-	//	selection_sort(&sets);
+	print_stack(&sets.stack_a, &sets.stack_b);
+	if (sets.stack_a.size < 30)
+		selection_sort(&sets);
 	print_stack(&sets.stack_a, &sets.stack_b);
 	free_stack(&sets.stack_a);
 	free_stack(&sets.stack_b);

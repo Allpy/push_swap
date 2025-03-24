@@ -25,12 +25,10 @@ void	rra(t_stack *stack_a)
 	last->next = stack_a->top;
 	stack_a->top->prev = last;
 	stack_a->top = last;
-
 	write(1, "rra\n", 4);
 }
 
-
-void	rrb(t_stack *stack_b) // optimizasyon için
+void	rrb(t_stack *stack_b)
 {
 	t_node *last;
 

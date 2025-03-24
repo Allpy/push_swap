@@ -18,7 +18,7 @@ int	checker_atoi(char *str, t_sets *sets)
 {
 	int			i;
 	int			sign;
-	unsigned long int	result;
+	long int	result;
 
 	result = 0;
 	sign = 1;
@@ -108,22 +108,22 @@ void	multiple_arg_checker(char **str, int argc, t_sets *sets)
 			num = -1;
 		else
 		{
-			num = checker_atoi(str[i], &sets);
+			num = checker_atoi(str[i], sets);
 			if (num == -1)
 				error_exit(&sets->stack_a, &sets->stack_b, 1);
 		}
 		add_to_stack(&sets->stack_a, num);
 		i++;
 	}
-	check_unique(&sets->stack_a);
+	check_unique(sets);
 }
 
 void	arg_checker(char **argv, int argc, t_sets *sets)
 {
 	if (argc == 2)
-		single_arg_checker(argv[1], &sets->stack_a);
+		single_arg_checker(argv[1], sets);
 	else if (argc > 2)
-		multiple_arg_checker(argv, argc, &sets->stack_a);
+		multiple_arg_checker(argv, argc, sets);
 	else
 		error_exit(&sets->stack_a, &sets->stack_b, 1);
 }
