@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   s_actions.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:49:13 by alermi            #+#    #+#             */
-/*   Updated: 2025/03/22 12:49:18 by alermi           ###   ########.fr       */
+/*   Updated: 2025/03/25 23:20:09 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,25 @@
 
 void	swap(t_stack *stack)
 {
-    t_node *one;
-    t_node *two;
+	t_node	*one;
+	t_node	*two;
 
-    one = stack->top;
-    two = one->next;
-    if (!one || !two)
-        return;
-    one->next = two->next;
-    if (two->next)
-        two->next->prev = one;
-    two->prev = NULL;
-    two->next = one;
-    one->prev = two;
-    stack->top = two;
-    if (stack->size == 2)
-        stack->bottom = one;
+	one = stack->top;
+	two = one->next;
+	if (!one || !two)
+		return ;
+	one->next = two->next;
+	if (two->next)
+		two->next->prev = one;
+	two->prev = NULL;
+	two->next = one;
+	one->prev = two;
+	stack->top = two;
+	if (stack->size == 2)
+		stack->bottom = one;
 }
 
-void    swap_selector(t_sets *sets, char *pick)
+void	swap_selector(t_sets *sets, char *pick)
 {
 	if (pick[0] == 's' && pick[1] == 'a')
 	{

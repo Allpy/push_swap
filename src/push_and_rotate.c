@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_and_rotate.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:49:02 by alermi            #+#    #+#             */
-/*   Updated: 2025/03/24 03:35:59 by alermi           ###   ########.fr       */
+/*   Updated: 2025/03/25 23:23:16 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,36 +59,18 @@ void	pb(t_stack *stack_b, t_stack *stack_a)
 	write(1, "pb\n", 3);
 }
 
-
-
-void ra(t_stack *stack_a)
+void	ra(t_stack *stack_a)
 {
-    if (stack_a->size < 2)
-        return ;
-    t_node *tmp = stack_a->top;
-    stack_a->top = tmp->next;
-    stack_a->top->prev = NULL;
-    tmp->next = NULL;
-    tmp->prev = stack_a->bottom;
-    stack_a->bottom->next = tmp;
-    stack_a->bottom = tmp;
+	t_node	*tmp;
 
-    write(1, "ra\n", 3);
+	if (stack_a->size < 2)
+		return ;
+	tmp = stack_a->top;
+	stack_a->top = tmp->next;
+	stack_a->top->prev = NULL;
+	tmp->next = NULL;
+	tmp->prev = stack_a->bottom;
+	stack_a->bottom->next = tmp;
+	stack_a->bottom = tmp;
+	write(1, "ra\n", 3);
 }
-
-
-void rb(t_stack *stack_b)
-{
-    if (stack_b->size < 2)
-        return;
-
-    t_node *tmp = stack_b->top;
-    stack_b->top = tmp->next;
-    stack_b->top->prev = NULL;
-    tmp->next = NULL;
-    tmp->prev = stack_b->bottom;
-    stack_b->bottom->next = tmp;
-    stack_b->bottom = tmp;
-    write(1, "rb\n", 3);
-}
-
