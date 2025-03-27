@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   arg_checks.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 23:21:18 by alermi            #+#    #+#             */
-/*   Updated: 2025/03/25 23:21:18 by alermi           ###   ########.fr       */
+/*   Created: 2025/03/22 12:38:51 by alermi            #+#    #+#             */
+/*   Updated: 2025/03/22 12:44:30 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include "../includes/libft/libft.h"
+#include <stdio.h>
 
 int	checker_atoi(char *str, t_sets *sets)
 {
@@ -78,44 +79,45 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 		{
 			num = checker_atoi(arr[i], sets);
 			if (num == -1)
-				break ;
+			{
+				matris_free(arr);
+				error_exit(&sets->stack_a, &sets->stack_b, 1);
+			}
+			add_to_stack(&sets->stack_a, num);
 		}
-		add_to_stack(&sets->stack_a, num);
 		i++;
+	}
+	if (i == 1)
+	{
+		matris_free(arr);
+		error_exit(&sets->stack_a, &sets->stack_b, 1);
 	}
 	matris_free(arr);
-	if (i == 1 || num == -1)
-		error_exit(&sets->stack_a, &sets->stack_b, 1);
-}
-
-void	multiple_arg_checker(char **str, int argc, t_sets *sets)
-{
-	int	i;
-	int	num;
-
-	i = 1;
-	while (i < argc)
-	{
-		if (str[i][0] == '-' && str[i][1] == '1' && str[i][2] == '\0')
-			num = -1;
-		else
-		{
-			num = checker_atoi(str[i], sets);
-			if (num == -1)
-				error_exit(&sets->stack_a, &sets->stack_b, 1);
-		}
-		add_to_stack(&sets->stack_a, num);
-		i++;
-	}
+	check_unique(sets);
 }
 
 void	arg_checker(char **argv, int argc, t_sets *sets)
 {
+	char	*str;
+	int		i;
+
+	i = 1;
+	str = NULL;
 	if (argc == 2)
 		single_arg_checker(argv[1], sets);
 	else if (argc > 2)
-		multiple_arg_checker(argv, argc, sets);
+	{
+		while (argv[i])
+		{
+			str = ft_strjoin(str, argv[i]);
+			str = ft_strjoin(str, " ");
+			i++;
+		}
+		single_arg_checker(str, sets);
+	}
 	else
 		error_exit(&sets->stack_a, &sets->stack_b, 1);
-	check_unique(sets);
 }
+
+
+

@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   close_project.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/25 23:21:11 by alermi            #+#    #+#             */
-/*   Updated: 2025/03/25 23:21:13 by alermi           ###   ########.fr       */
+/*   Created: 2025/03/24 03:31:17 by alermi            #+#    #+#             */
+/*   Updated: 2025/03/24 03:31:39 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 void	free_imp(char *str)
 {
