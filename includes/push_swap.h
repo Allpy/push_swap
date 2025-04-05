@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:46:39 by alermi            #+#    #+#             */
-/*   Updated: 2025/01/12 15:11:52 by alermi           ###   ########.fr       */
+/*   Updated: 2025/04/05 16:08:41 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ typedef struct s_node
 {
 	int				data;
 	int				index;
-	struct	s_node	*next;
-	struct	s_node	*prev;
-} t_node;
+	struct s_node	*next;
+	struct s_node	*prev;
+}	t_node;
 
 typedef struct s_stack
 {
@@ -38,7 +38,6 @@ typedef struct s_sets
 	t_stack	stack_a;
 	t_stack	stack_b;
 }	t_sets;
-
 
 //##############=[Checker Funtions]=#################//
 
@@ -55,13 +54,14 @@ void	error_exit(t_stack *stack_a, t_stack *stack_b, int section);
 
 //###############=[Stack Manipulation]=################//
 
-void    index_reset(t_sets *sets);
+void	index_reset(t_sets *sets);
 void	remove_node(t_stack *stack, t_node *node);
 void	add_to_stack(t_stack *stack, int value);
 void	print_stack(t_stack *stack_a, t_stack	*stack_b);
 
 //###############=[Action Pattern]=################//
-void    swap_selector(t_sets *sets, char *pick);
+
+void	swap_selector(t_sets *sets, char *pick);
 void	swap(t_stack *stack);
 void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_b, t_stack *stack_a);
@@ -72,17 +72,17 @@ void	rrb(t_stack *stack_b);
 
 //###############=[Sorting Pattern]=################//
 
-int 	is_sorted(t_stack *stack);
+int		is_sorted(t_stack *stack);
 void	radix_sorting(t_sets *sets);
 void	assign_indexes(t_sets *sets);
 
 //###############=[Sorting Pattern]=################//
 
-void selection_sort(t_sets *sets);
-void move_to_b(t_sets *sets, int i);
+void	selection_sort(t_sets *sets);
+void	move_to_b(t_sets *sets, int i);
 
 //###############=[Radix Sort]=################//
 
-void radix_sort(t_sets *sets);
+void	radix_sort(t_sets *sets);
 
 #endif

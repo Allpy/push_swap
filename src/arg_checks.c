@@ -67,11 +67,11 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 	int		num;
 	char	**arr;
 
-	i = 0;
+	i = -1;
 	arr = ft_split(numbers, ' ');
 	if (arr == NULL)
 		error_exit(&sets->stack_a, &sets->stack_b, 1);
-	while (arr[i])
+	while (arr[++i])
 	{
 		if (arr[i][0] == '-' && arr[i][1] == '1' && arr[i][3] == '\0')
 			num = -1;
@@ -85,15 +85,8 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 			}
 		}
 		add_to_stack(&sets->stack_a, num);
-		i++;
-	}
-	if (i == 1)
-	{
-		matris_free(arr);
-		error_exit(&sets->stack_a, &sets->stack_b, 1);
 	}
 	matris_free(arr);
-	check_unique(sets);
 }
 
 void	arg_checker(char **argv, int argc, t_sets *sets)
@@ -121,4 +114,5 @@ void	arg_checker(char **argv, int argc, t_sets *sets)
 		exit(1);
 	else if (is_sorted(&sets->stack_a) && (sets->stack_a.top == 0))
 		error_exit(&sets->stack_a, &sets->stack_b, 1);
+	check_unique(sets);
 }
