@@ -83,8 +83,8 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 				matris_free(arr);
 				error_exit(&sets->stack_a, &sets->stack_b, 1);
 			}
-			add_to_stack(&sets->stack_a, num);
 		}
+		add_to_stack(&sets->stack_a, num);
 		i++;
 	}
 	if (i == 1)
@@ -117,7 +117,8 @@ void	arg_checker(char **argv, int argc, t_sets *sets)
 	}
 	else
 		error_exit(&sets->stack_a, &sets->stack_b, 1);
+	if (is_sorted(&sets->stack_a) && (sets->stack_a.top != 0))
+		exit(1);
+	else if (is_sorted(&sets->stack_a) && (sets->stack_a.top == 0))
+		error_exit(&sets->stack_a, &sets->stack_b, 1);
 }
-
-
-
