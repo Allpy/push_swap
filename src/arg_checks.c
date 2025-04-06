@@ -12,7 +12,6 @@
 
 #include "../includes/push_swap.h"
 #include "../includes/libft/libft.h"
-#include <stdio.h>
 
 long	ft_atol(const char *nptr)
 {

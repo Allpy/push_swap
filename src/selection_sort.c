@@ -6,12 +6,11 @@
 /*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:11:07 by alermi            #+#    #+#             */
-/*   Updated: 2025/04/06 22:05:59 by alermi           ###   ########.fr       */
+/*   Updated: 2025/04/06 22:08:08 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-#include <stdio.h>
 
 void	move_to_b(t_sets *sets, int i)
 {

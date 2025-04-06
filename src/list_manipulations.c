@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list_manipulations.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 12:44:49 by alermi            #+#    #+#             */
-/*   Updated: 2025/03/24 03:32:27 by alermi           ###   ########.fr       */
+/*   Updated: 2025/04/06 22:09:09 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	add_to_stack(t_stack *stack, int value)
 	stack->bottom = new_node;
 	stack->size++;
 }
-
+// aga sakın unutma print_stack var
 void	remove_node(t_stack *stack, t_node *node)
 {
 	if (!stack || !node)

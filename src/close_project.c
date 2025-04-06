@@ -6,13 +6,12 @@
 /*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 03:31:17 by alermi            #+#    #+#             */
-/*   Updated: 2025/04/06 16:40:59 by alermi           ###   ########.fr       */
+/*   Updated: 2025/04/06 22:09:29 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 void	free_imp(char *str)
 {
