@@ -6,7 +6,7 @@
 /*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:11:07 by alermi            #+#    #+#             */
-/*   Updated: 2025/04/06 22:08:08 by alermi           ###   ########.fr       */
+/*   Updated: 2025/04/06 22:17:41 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ void	move_to_b(t_sets *sets, int i)
 	}
 	if (current)
 	{
+		// Eğer aradığımız index ikinci sıradaysa swap yap
+		if (sets->stack_a.top && sets->stack_a.top->next &&
+			sets->stack_a.top->next->index == i)
+		{
+			swap_selector(sets, "sa");
+			pb(&sets->stack_b, &sets->stack_a);
+			return ;
+		}
 		if (j <= sets->stack_a.size / 2)
 			while (j--)
 				ra(&sets->stack_a);
@@ -41,18 +49,46 @@ void	move_to_b(t_sets *sets, int i)
 	}
 }
 
+
+void	sort_three(t_sets *sets)
+{
+	int a = sets->stack_a.top->index;
+	int b = sets->stack_a.top->next->index;
+	int c = sets->stack_a.top->next->next->index;
+
+	if (a > b && b < c && a < c)
+		swap_selector(sets, "sa");
+	else if (a > b && b > c)
+	{
+		swap_selector(sets, "sa");
+		rra(&sets->stack_a);
+	}
+	else if (a > b && b < c && a > c)
+		ra(&sets->stack_a);
+	else if (a < b && b > c && a < c)
+	{
+		swap_selector(sets, "sa");
+		ra(&sets->stack_a);
+	}
+	else if (a < b && b > c && a > c)
+		rra(&sets->stack_a);
+}
+
 void	selection_sort(t_sets *sets)
 {
 	int	i;
 
 	i = 1;
-	while (sets->stack_a.size > 1)
+	while (sets->stack_a.size > 3)
 	{
 		if (is_sorted(&sets->stack_a))
 			break ;
 		move_to_b(sets, i);
 		i++;
 	}
+	if (!is_sorted(&sets->stack_a))
+		sort_three(sets);
 	while (sets->stack_b.size > 0)
 		pa(&sets->stack_a, &sets->stack_b);
 }
+
