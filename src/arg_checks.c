@@ -14,32 +14,51 @@
 #include "../includes/libft/libft.h"
 #include <stdio.h>
 
-int	checker_atoi(char *str, t_sets *sets)
+long	ft_atol(const char *nptr)
 {
-	int			i;
-	int			sign;
-	long int	result;
+	int		sign;
+	size_t	res;
+	size_t	i;
 
-	result = 0;
-	sign = 1;
 	i = 0;
-	if (str[i] == '+')
+	sign = 1;
+	res = 0;
+	while (nptr[i] <= 32)
 		i++;
-	else if (str[i] == '-')
+	if (nptr[i] == '+' || nptr[i] == '-')
 	{
-		sign = -1;
+		if (nptr[i] == '-')
+			sign = -1;
 		i++;
 	}
-	while (str[i])
+	while (nptr[i] >= '0' && nptr[i] <= '9')
 	{
-		if (str[i] < '0' || str[i] > '9')
-			return (-1);
-		result = (result * 10) + (str[i] - '0');
+		res = (res * 10) + (nptr[i] - '0');
 		i++;
 	}
-	if (result * sign > 2147483647 || result * sign < -2147483648)
+	return ((long)(res * sign));
+}
+
+int	number_controllor(char *arr)
+{
+	int	i;
+
+	i = 0;
+	if  ( arr[i] == '+' || arr[i] == '-')
+		i++;
+	if (ft_strlen(&arr[i]) == 0)
+ 		return (-1);
+	while (arr[i] == '0')
+		 i++;
+	if (ft_strlen(&arr[i]) >= 11)
 		return (-1);
-	return ((int)(result * sign));
+	while (arr[i])
+	{
+		if (!ft_isdigit(arr[i]))
+			return (-1);
+		i++;
+	}
+	return (0);
 }
 
 void	check_unique(t_sets *sets)
@@ -64,25 +83,26 @@ void	check_unique(t_sets *sets)
 void	single_arg_checker(char *numbers, t_sets *sets)
 {
 	int		i;
-	int		num;
+	long	num;
 	char	**arr;
 
 	i = -1;
 	arr = ft_split(numbers, ' ');
+	free(numbers);
 	if (arr == NULL)
 		error_exit(&sets->stack_a, &sets->stack_b, 1);
 	while (arr[++i])
 	{
-		if (arr[i][0] == '-' && arr[i][1] == '1' && arr[i][3] == '\0')
-			num = -1;
-		else
+		if (number_controllor(arr[i]) == -1)
 		{
-			num = checker_atoi(arr[i], sets);
-			if (num == -1)
-			{
-				matris_free(arr);
-				error_exit(&sets->stack_a, &sets->stack_b, 1);
-			}
+			matris_free(arr);
+			error_exit(&sets->stack_a, &sets->stack_b, 1);
+		}
+		num = ft_atol(arr[i]);
+		if (num > 2147483647 && num < -2147483648)
+		{
+			matris_free(arr);
+			error_exit(&sets->stack_a, &sets->stack_b, 1);
 		}
 		add_to_stack(&sets->stack_a, num);
 	}
@@ -92,27 +112,28 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 void	arg_checker(char **argv, int argc, t_sets *sets)
 {
 	char	*str;
+	char	*temp;
 	int		i;
 
-	i = 1;
+	i = 0;
 	str = NULL;
-	if (argc == 2)
-		single_arg_checker(argv[1], sets);
-	else if (argc > 2)
+
+	while (argv[++i])
 	{
-		while (argv[i])
-		{
-			str = ft_strjoin(str, argv[i]);
-			str = ft_strjoin(str, " ");
-			i++;
-		}
-		single_arg_checker(str, sets);
+		if (ft_strlen(argv[i]) == 0)
+			free_imp(str);
+		if (ft_strlen(argv[i]) == 0)
+			error_exit(&sets->stack_a, &sets->stack_b, 1);
+		temp = ft_strjoin(str, argv[i]);
+		free_imp(str);
+		if (!temp)
+			exit(1);
+		str = temp;
+		temp = ft_strjoin(str, " ");
+		free_imp(str);
+		if (!temp)
+			exit(1);
+		str = temp;
 	}
-	else
-		error_exit(&sets->stack_a, &sets->stack_b, 1);
-	if (is_sorted(&sets->stack_a) && (sets->stack_a.top != 0))
-		exit(1);
-	else if (is_sorted(&sets->stack_a) && (sets->stack_a.top == 0))
-		error_exit(&sets->stack_a, &sets->stack_b, 1);
-	check_unique(sets);
+	single_arg_checker(str, sets);
 }

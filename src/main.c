@@ -18,8 +18,15 @@ int	main(int argc, char **argv)
 	t_sets	sets;
 	t_node	*start;
 
+	if (argc == 1)
+		return (0);
 	ft_memset(&sets, 0, sizeof(t_sets));
 	arg_checker(argv, argc, &sets);
+	check_unique(&sets);
+	if (is_sorted(&sets.stack_a) && (sets.stack_a.top != 0))
+		error_exit(&sets.stack_a, &sets.stack_b, 0);
+	else if (is_sorted(&sets.stack_a) && (sets.stack_a.top == 0))
+		error_exit(&sets.stack_a, &sets.stack_b, 1);
 	index_reset(&sets);
 	assign_indexes(&sets);
 	if (sets.stack_a.size < 10)

@@ -6,7 +6,7 @@
 /*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/03 19:11:07 by alermi            #+#    #+#             */
-/*   Updated: 2025/04/03 19:47:09 by alermi           ###   ########.fr       */
+/*   Updated: 2025/04/05 17:13:50 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ void	selection_sort(t_sets *sets)
 	i = 1;
 	while (sets->stack_a.size > 1)
 	{
+		if (is_sorted(&sets->stack_a))
+			break;
 		move_to_b(sets, i);
 		i++;
 	}
