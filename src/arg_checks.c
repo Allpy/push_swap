@@ -44,12 +44,12 @@ int	number_controllor(char *arr)
 	int	i;
 
 	i = 0;
-	if  ( arr[i] == '+' || arr[i] == '-')
+	if (arr[i] == '+' || arr[i] == '-')
 		i++;
 	if (ft_strlen(&arr[i]) == 0)
- 		return (-1);
+		return (-1);
 	while (arr[i] == '0')
-		 i++;
+		i++;
 	if (ft_strlen(&arr[i]) >= 11)
 		return (-1);
 	while (arr[i])
@@ -117,7 +117,6 @@ void	arg_checker(char **argv, int argc, t_sets *sets)
 
 	i = 0;
 	str = NULL;
-
 	while (argv[++i])
 	{
 		if (ft_strlen(argv[i]) == 0)

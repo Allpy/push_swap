@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   w_hex_a_pointer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alermi <alermi@student.42kocaeli.com.tr>   +#+  +:+       +#+        */
+/*   By: alermi <alermi@student.42.tr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 17:40:46 by alermi            #+#    #+#             */
-/*   Updated: 2024/11/29 17:40:48 by alermi           ###   ########.fr       */
+/*   Updated: 2025/04/06 22:06:29 by alermi           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	w_pointer(void *adress, char *base)
 	{
 		write(1, "(nil)", 5);
 		return (5);
-	}	
+	}
 	write(1, "0x", 2);
 	return (w_convertor((unsigned long int)adress, base) + 2);
 }
