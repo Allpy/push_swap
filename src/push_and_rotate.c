@@ -74,19 +74,3 @@ void	ra(t_stack *stack_a)
 	stack_a->bottom = tmp;
 	write(1, "ra\n", 3);
 }
-
-void	rb(t_stack *stack_b)
-{
-	t_node	*tmp;
-
-	if (stack_b->size < 2)
-		return ;
-	tmp = stack_b->top;
-	stack_b->top = tmp->next;
-	stack_b->top->prev = NULL;
-	tmp->next = NULL;
-	tmp->prev = stack_b->bottom;
-	stack_b->bottom->next = tmp;
-	stack_b->bottom = tmp;
-	write(1, "rb\n", 3);
-}

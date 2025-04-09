@@ -15,12 +15,11 @@
 int	main(int argc, char **argv)
 {
 	t_sets	sets;
-	t_node	*start;
 
 	if (argc == 1)
 		return (0);
 	ft_memset(&sets, 0, sizeof(t_sets));
-	arg_checker(argv, argc, &sets);
+	arg_checker(argv, &sets);
 	check_unique(&sets);
 	if (is_sorted(&sets.stack_a) && (sets.stack_a.top != 0))
 		error_exit(&sets.stack_a, &sets.stack_b, 0);
@@ -32,6 +31,8 @@ int	main(int argc, char **argv)
 		selection_sort(&sets);
 	else
 		radix_sort(&sets);
+	if (!is_sorted(&sets.stack_a))
+		ra(&sets.stack_a);
 	free_stack(&sets.stack_a);
 	free_stack(&sets.stack_b);
 	return (0);

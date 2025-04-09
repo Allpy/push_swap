@@ -60,8 +60,7 @@ void	error_exit(t_stack *stack_a, t_stack *stack_b, int section)
 		free_stack(stack_a);
 	if ((stack_b) && stack_b->top)
 		free_stack(stack_b);
-	if (section == 0)
-		exit (0);
-	write(1, "Error\n", 6);
-	exit(1);
+	if (section)
+		write(2, "Error\n", 6);
+	exit (section);
 }

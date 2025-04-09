@@ -98,7 +98,7 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 			error_exit(&sets->stack_a, &sets->stack_b, 1);
 		}
 		num = ft_atol(arr[i]);
-		if (num > 2147483647 && num < -2147483648)
+		if (num > 2147483647 || num < -2147483648)
 		{
 			matris_free(arr);
 			error_exit(&sets->stack_a, &sets->stack_b, 1);
@@ -108,7 +108,7 @@ void	single_arg_checker(char *numbers, t_sets *sets)
 	matris_free(arr);
 }
 
-void	arg_checker(char **argv, int argc, t_sets *sets)
+void	arg_checker(char **argv, t_sets *sets)
 {
 	char	*str;
 	char	*temp;

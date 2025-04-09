@@ -1,31 +1,40 @@
 NAME = push_swap
 CC = cc
-CFLAGS = -g
+CFLAGS = -Wall -Wextra -Werror -g
 RM = rm -rf
 
 SRC = ./src/main.c					\
       ./src/arg_checks.c			\
-	  ./src/list_manipulations.c	\
-	  ./src/push_and_rotate.c		\
-	  ./src/s_actions.c				\
-	  ./src/r_push_and_rotate.c		\
-	  ./src/close_project.c			\
-	  ./src/sorting.c				\
-	  ./src/selection_sort.c		\
-	  ./src/radix_sort.c
+      ./src/list_manipulations.c	\
+      ./src/push_and_rotate.c		\
+      ./src/s_actions.c				\
+      ./src/r_push_and_rotate.c		\
+      ./src/close_project.c			\
+      ./src/sorting.c				\
+      ./src/selection_sort.c		\
+      ./src/radix_sort.c
 
 INC = ./includes/libft/libft.a
 
 OBJ_DIR = obj
-OBJ = $(SRC:.c=.o)
-OBJS = $(patsubst %.o, $(OBJ_DIR)/%.o, $(OBJ))
+
+OBJS = $(OBJ_DIR)/main.o               \
+       $(OBJ_DIR)/arg_checks.o         \
+       $(OBJ_DIR)/list_manipulations.o \
+       $(OBJ_DIR)/push_and_rotate.o    \
+       $(OBJ_DIR)/s_actions.o          \
+       $(OBJ_DIR)/r_push_and_rotate.o  \
+       $(OBJ_DIR)/close_project.o      \
+       $(OBJ_DIR)/sorting.o            \
+       $(OBJ_DIR)/selection_sort.o     \
+       $(OBJ_DIR)/radix_sort.o
 
 all: $(NAME)
 
 $(OBJ_DIR):
-	@mkdir -p $(OBJ_DIR)/src
+	@mkdir -p $(OBJ_DIR)
 
-$(OBJ_DIR)/%.o: %.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: ./src/%.c | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME): $(OBJS)
@@ -42,12 +51,4 @@ fclean: clean
 
 re: fclean all
 
-ARGS ?=
-
-count:
-	@./$(NAME) $(ARGS) | wc -l
-
-control:
-	@./$(NAME) $(ARGS) | ./checker_linux $(ARGS)
-
-.PHONY: all clean fclean re count control
+.PHONY: all clean fclean re

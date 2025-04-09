@@ -12,49 +12,48 @@
 
 #include "../includes/push_swap.h"
 
+void	move_and_push(t_sets *sets, int j)
+{
+	int		rev;
+
+	if (j <= sets->stack_a.size / 2)
+		while (j-- > 0)
+			ra(&sets->stack_a);
+	else
+	{
+		rev = sets->stack_a.size - j;
+		while (rev-- > 0)
+			rra(&sets->stack_a);
+	}
+	pb(&sets->stack_b, &sets->stack_a);
+}
+
 void	move_to_b(t_sets *sets, int i)
 {
 	int		j;
-	t_node	*current;
+	t_node	*cur;
 
 	j = 0;
-	current = sets->stack_a.top;
-	while (current)
+	cur = sets->stack_a.top;
+	while (cur && cur->index != i)
 	{
-		if (current->index == i)
-			break ;
-		current = current->next;
+		cur = cur->next;
 		j++;
 	}
-	if (current)
+	if (!cur)
+		return ;
+	if (sets->stack_a.top && sets->stack_a.top->next
+		&& sets->stack_a.top->next->index == i)
 	{
-		if (sets->stack_a.top && sets->stack_a.top->next &&
-			sets->stack_a.top->next->index == i)
-		{
-			swap_selector(sets, "sa");
-			pb(&sets->stack_b, &sets->stack_a);
-			return ;
-		}
-		if (j <= sets->stack_a.size / 2)
-			while (j--)
-				ra(&sets->stack_a);
-		else
-		{
-			j = sets->stack_a.size - j;
-			while (j--)
-				rra(&sets->stack_a);
-		}
+		swap_selector(sets, "sa");
 		pb(&sets->stack_b, &sets->stack_a);
+		return ;
 	}
+	move_and_push(sets, j);
 }
 
-
-void	sort_three(t_sets *sets)
+void	sort_three(t_sets *sets, int a, int b, int c)
 {
-	int a = sets->stack_a.top->index;
-	int b = sets->stack_a.top->next->index;
-	int c = sets->stack_a.top->next->next->index;
-
 	if (a > b && b < c && a < c)
 		swap_selector(sets, "sa");
 	else if (a > b && b > c)
@@ -85,9 +84,12 @@ void	selection_sort(t_sets *sets)
 		move_to_b(sets, i);
 		i++;
 	}
-	if (!is_sorted(&sets->stack_a))
-		sort_three(sets);
+	if (!is_sorted(&sets->stack_a) && sets->stack_a.size == 3)
+		sort_three(sets, sets->stack_a.top->index,
+			sets->stack_a.top->next->index,
+			sets->stack_a.top->next->next->index);
+	else if (!is_sorted(&sets->stack_a) && sets->stack_a.size == 2)
+		swap_selector(sets, "sa");
 	while (sets->stack_b.size > 0)
 		pa(&sets->stack_a, &sets->stack_b);
 }
-

@@ -13,7 +13,6 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "ft_printf/ft_printf.h"
 # include "./libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
@@ -41,9 +40,11 @@ typedef struct s_sets
 
 //##############=[Checker Funtions]=#################//
 
-void	arg_checker(char **argv, int argc, t_sets *sets);
+void	arg_checker(char **argv, t_sets *sets);
 void	single_arg_checker(char *numbers, t_sets *sets);
 void	check_unique(t_sets *sets);
+long	ft_atol(const char *nptr);
+int		number_controllor(char *arr);
 
 //###############=[Error and Close]=################//
 
@@ -57,7 +58,6 @@ void	error_exit(t_stack *stack_a, t_stack *stack_b, int section);
 void	index_reset(t_sets *sets);
 void	remove_node(t_stack *stack, t_node *node);
 void	add_to_stack(t_stack *stack, int value);
-void	print_stack(t_stack *stack_a, t_stack	*stack_b);
 
 //###############=[Action Pattern]=################//
 
@@ -66,19 +66,18 @@ void	swap(t_stack *stack);
 void	pa(t_stack *stack_a, t_stack *stack_b);
 void	pb(t_stack *stack_b, t_stack *stack_a);
 void	ra(t_stack *stack_a);
-void	rb(t_stack *stack_b);
 void	rra(t_stack *stack_a);
-void	rrb(t_stack *stack_b);
 
 //###############=[Sorting Pattern]=################//
 
 int		is_sorted(t_stack *stack);
-void	radix_sorting(t_sets *sets);
 void	assign_indexes(t_sets *sets);
 
 //###############=[Sorting Pattern]=################//
 
+void	move_and_push(t_sets *sets, int j);
 void	selection_sort(t_sets *sets);
+void	sort_three(t_sets *sets, int a, int b, int c);
 void	move_to_b(t_sets *sets, int i);
 
 //###############=[Radix Sort]=################//
